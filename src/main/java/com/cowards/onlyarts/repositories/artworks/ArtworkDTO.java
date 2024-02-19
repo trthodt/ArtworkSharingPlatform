@@ -1,0 +1,101 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.cowards.onlyarts.repositories.artworks;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+/**
+ * The {@code ArtworkDTO} class represents a Data Transfer Object (DTO) for
+ * artwork information within the OnlyArts application. It encapsulates details
+ * such as artwork ID, owner ID, category ID, privacy level, name, description,
+ * artwork image, price, quantity, release date, and status. Instances of this
+ * class are used to transfer artwork data between different layers of the
+ * application, providing a standardized format for artwork-related information.
+ *
+ * Usage Example:
+ *
+ * <pre>{@code
+ * ArtworkDTO artwork = new ArtworkDTO();
+ * artwork.setArtworkId("123");
+ * artwork.setOwnerId("456");
+ * artwork.setCateId("789");
+ * artwork.setPrivacy(1);
+ * artwork.setName("Artwork Name");
+ * artwork.setDescription("Artwork Description");
+ * artwork.setArtworkImage("/path/to/image.jpg");
+ * artwork.setPrice(99.99f);
+ * artwork.setQuantity(10L);
+ * artwork.setReleaseDate(new Date(System.currentTimeMillis()));
+ * artwork.setStatus("Active");
+ * }</pre>
+ */
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+public class ArtworkDTO implements Serializable {
+
+    /**
+     * Unique identifier for the artwork.
+     */
+    private String artworkId;
+
+    /**
+     * Identifier of the owner (artist) of the artwork.
+     */
+    private String ownerId;
+
+    /**
+     * Identifier of the category to which the artwork belongs.
+     */
+    private String cateId;
+
+    /**
+     * Privacy level of the artwork (e.g., public, private).
+     */
+    private int privacy;
+
+    /**
+     * Name of the artwork.
+     */
+    private String name;
+
+    /**
+     * Description providing additional details about the artwork.
+     */
+    private String description;
+
+    /**
+     * Path or URL to the image representing the artwork.
+     */
+    private byte[] artworkImage;
+
+    /**
+     * Price of the artwork.
+     */
+    private float price;
+
+    /**
+     * Quantity of available copies of the artwork.
+     */
+    private long quantity;
+
+    /**
+     * Date when the artwork was released or created.
+     */
+    private Timestamp releaseDate;
+
+    /**
+     * Status of the artwork (e.g., active, inactive).
+     */
+    private String status;
+}
