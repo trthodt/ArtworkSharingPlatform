@@ -33,7 +33,7 @@ import lombok.ToString;
  * artwork.setArtworkImage("/path/to/image.jpg");
  * artwork.setPrice(99.99f);
  * artwork.setQuantity(10L);
- * artwork.setReleaseDate(new Date(System.currentTimeMillis()));
+ * artwork.setReleasedDate(new Date(System.currentTimeMillis()));
  * artwork.setStatus("Active");
  * }</pre>
  */
@@ -92,7 +92,7 @@ public class ArtworkDTO implements Serializable {
     /**
      * Date when the artwork was released or created.
      */
-    private Timestamp releaseDate;
+    private Timestamp releasedDate;
 
     /**
      * Status of the artwork (e.g., active, inactive).

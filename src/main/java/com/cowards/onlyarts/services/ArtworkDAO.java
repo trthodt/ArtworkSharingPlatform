@@ -20,6 +20,8 @@ import java.util.logging.Logger;
 public class ArtworkDAO {
 
     private static final String GETONE = "SELECT * FROM Artworks WHERE artwork_id = ?";
+    private static final String UPDATE = "UPDATE Artworks SET cate_id = ?, privacy = ?, name = ?, description = ?, "
+            + "artwork_image = ?, price = ?, quantity = ?, released_date = ?, status = ? WHERE artwork_id = ?";
 
     private static ArtworkDAO instance;
 
@@ -54,12 +56,32 @@ public class ArtworkDAO {
                 artworkDTO.setArtworkImage(rs.getBytes(7));
                 artworkDTO.setPrice(rs.getFloat(8));
                 artworkDTO.setQuantity(rs.getLong(9));
-                artworkDTO.setReleaseDate(rs.getTimestamp(10));
+                artworkDTO.setReleasedDate(rs.getTimestamp(10));
                 artworkDTO.setStatus(rs.getString(11));
             }
         } catch (SQLException e) {
-            Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Exception found on on getOne() method", e);
+            Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Exception found on getOne() method", e);
         }
         return artworkDTO;
+    }
+
+    public void update(ArtworkDTO artworkDTO) {
+        PreparedStatement stm = null;
+        try {
+            stm = conn.prepareStatement(UPDATE);
+            stm.setString(1, artworkDTO.getCateId());
+            stm.setInt(2, artworkDTO.getPrivacy());
+            stm.setString(3, artworkDTO.getName());
+            stm.setString(4, artworkDTO.getDescription());
+            stm.setBytes(5, artworkDTO.getArtworkImage());
+            stm.setFloat(6, artworkDTO.getPrice());
+            stm.setLong(7, artworkDTO.getQuantity());
+            stm.setTimestamp(8, artworkDTO.getReleasedDate());
+            stm.setString(9, artworkDTO.getStatus());
+            stm.setString(10, artworkDTO.getArtworkId());
+            stm.executeQuery();
+        } catch (SQLException e) {
+            Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Exception found on update() method", e);
+        }
     }
 }
