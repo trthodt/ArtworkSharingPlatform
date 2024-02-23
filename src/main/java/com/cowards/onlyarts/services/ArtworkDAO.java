@@ -61,12 +61,21 @@ public class ArtworkDAO {
             }
         } catch (SQLException e) {
             Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Exception found on getOne() method", e);
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Error closing PreparedStatement", e);
+                }
+            }
         }
         return artworkDTO;
     }
 
-    public void update(ArtworkDTO artworkDTO) {
+    public boolean update(ArtworkDTO artworkDTO) {
         PreparedStatement stm = null;
+        boolean result = false;
         try {
             stm = conn.prepareStatement(UPDATE);
             stm.setString(1, artworkDTO.getCateId());
@@ -79,9 +88,19 @@ public class ArtworkDAO {
             stm.setTimestamp(8, artworkDTO.getReleasedDate());
             stm.setString(9, artworkDTO.getStatus());
             stm.setString(10, artworkDTO.getArtworkId());
-            stm.executeQuery();
+            stm.executeUpdate();
+            result = true;
         } catch (SQLException e) {
             Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Exception found on update() method", e);
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Error closing PreparedStatement", e);
+                }
+            }
         }
+        return result;
     }
 }

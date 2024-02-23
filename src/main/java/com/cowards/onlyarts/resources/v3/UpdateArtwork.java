@@ -12,6 +12,7 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -35,48 +36,61 @@ public class UpdateArtwork {
     public Response getOne(@PathParam("artworkId") String artworkId) {
         try {
             ArtworkDTO artworkDTO = artworkDao.getOne(artworkId);
-            return Response.ok(artworkDTO, MediaType.APPLICATION_JSON).build();
+            return Response.ok(artworkDTO).build();
         } catch (Exception e) {
-            return Response.ok(e, MediaType.APPLICATION_JSON).build();
+            return Response.ok(e).build();
         }
     }
 
-    @POST
+//    @POST
+//    @Path("{artworkId}")
+//    @Consumes("application/x-www-form-urlencoded")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response update(@PathParam("artworkId") String artworkId, @FormParam("cateName") String cateName, @FormParam("privacy") int privacy,
+//            @FormParam("name") String name, @FormParam("description") String description, @FormParam("artwork_image") byte[] artworkImage,
+//            @FormParam("price") float price, @FormParam("quantity") long quantity, @FormParam("released_date") Timestamp releasedDate,
+//            @FormParam("status") String status) {
+//        try {
+//            ArtworkDTO artworkDTO = artworkDao.getOne(artworkId);
+//
+//            CategoriesDTO cdto = categoriesDao.getOneByName(cateName);
+//            String cateId = cdto.getCateId();
+//            artworkDTO.setCateId(cateId);
+//            
+//            artworkDTO.setPrivacy(privacy);
+//            
+//            artworkDTO.setName(name);
+//            
+//            artworkDTO.setDescription(description);
+//            
+//            artworkDTO.setArtworkImage(artworkImage);
+//            
+//            artworkDTO.setPrice(price);
+//            
+//            artworkDTO.setQuantity(quantity);
+//            
+//            artworkDTO.setReleasedDate(releasedDate);
+//            
+//            artworkDTO.setStatus(status);
+//
+//            artworkDao.update(artworkDTO);
+//            
+//            return Response.ok(artworkDTO, MediaType.APPLICATION_JSON).build();
+//        } catch (Exception e) {
+//            return Response.ok(e, MediaType.APPLICATION_JSON).build();
+//        }
+//    }
+    
+    @PUT
     @Path("{artworkId}")
-    @Consumes("application/x-www-form-urlencoded")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("artworkId") String artworkId, @FormParam("cateName") String cateName, @FormParam("privacy") int privacy,
-            @FormParam("name") String name, @FormParam("description") String description, @FormParam("artwork_image") byte[] artworkImage,
-            @FormParam("price") float price, @FormParam("quantity") long quantity, @FormParam("released_date") Timestamp releasedDate,
-            @FormParam("status") String status) {
+    public Response update(ArtworkDTO adto) {
         try {
-            ArtworkDTO artworkDTO = artworkDao.getOne(artworkId);
-
-            CategoriesDTO cdto = categoriesDao.getOneByName(cateName);
-            String cateId = cdto.getCateId();
-            artworkDTO.setCateId(cateId);
-            
-            artworkDTO.setPrivacy(privacy);
-            
-            artworkDTO.setName(name);
-            
-            artworkDTO.setDescription(description);
-            
-            artworkDTO.setArtworkImage(artworkImage);
-            
-            artworkDTO.setPrice(price);
-            
-            artworkDTO.setQuantity(quantity);
-            
-            artworkDTO.setReleasedDate(releasedDate);
-            
-            artworkDTO.setStatus(status);
-
-            artworkDao.update(artworkDTO);
-            
-            return Response.ok(artworkDTO, MediaType.APPLICATION_JSON).build();
+            boolean result = artworkDao.update(adto);
+            return Response.ok(result).build();
         } catch (Exception e) {
-            return Response.ok(e, MediaType.APPLICATION_JSON).build();
+            return Response.ok(e).build();
         }
     }
 }
