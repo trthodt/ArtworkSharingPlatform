@@ -22,6 +22,7 @@ public class ArtworkDAO {
     private static final String GETONE = "SELECT * FROM Artworks WHERE artwork_id = ?";
     private static final String UPDATE = "UPDATE Artworks SET cate_id = ?, privacy = ?, name = ?, description = ?, "
             + "artwork_image = ?, price = ?, quantity = ?, released_date = ?, status = ? WHERE artwork_id = ?";
+    private static final String DELETE = "DELETE FROM Artworks WHERE artwork_id = ?";
 
     private static ArtworkDAO instance;
 
@@ -98,6 +99,28 @@ public class ArtworkDAO {
                     stm.close();
                 } catch (SQLException e) {
                     Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Error closing PreparedStatement", e);
+                }
+            }
+        }
+        return result;
+    }
+    
+    public boolean delete(String artworkId) {
+        PreparedStatement stm = null;
+        boolean result = false;
+        try {
+            stm = conn.prepareStatement(DELETE);
+            stm.setString(1, artworkId);
+            stm.executeUpdate();
+            result = true;
+        } catch (SQLException e) {
+            Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Exception found on delete() method", e);
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Error closing PrepareStatement", e);
                 }
             }
         }

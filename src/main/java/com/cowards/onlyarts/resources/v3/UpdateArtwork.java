@@ -80,7 +80,6 @@ public class UpdateArtwork {
 //            return Response.ok(e, MediaType.APPLICATION_JSON).build();
 //        }
 //    }
-    
     @PUT
     @Path("{artworkId}")
     @Consumes(MediaType.APPLICATION_JSON)
