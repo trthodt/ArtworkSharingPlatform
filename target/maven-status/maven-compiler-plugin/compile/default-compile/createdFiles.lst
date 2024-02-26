@@ -1,0 +1,11 @@
+com\cowards\onlyarts\models\users\UserDAO.class
+com\cowards\onlyarts\utils\DBContext.class
+com\cowards\onlyarts\models\artworks\ArtworkDTO.class
+com\cowards\onlyarts\resources\v4\Artwork.class
+com\cowards\onlyarts\conf\Application.class
+com\cowards\onlyarts\models\users\UserDTO.class
+com\cowards\onlyarts\resources\v4\Following.class
+com\cowards\onlyarts\models\users\UserERROR.class
+com\cowards\onlyarts\resources\v4\User.class
+com\cowards\onlyarts\models\artworks\ArtworkDAO.class
+com\cowards\onlyarts\models\artworks\ArtworkERROR.class
