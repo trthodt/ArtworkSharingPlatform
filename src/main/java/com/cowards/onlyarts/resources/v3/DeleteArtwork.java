@@ -5,7 +5,7 @@
 package com.cowards.onlyarts.resources.v3;
 
 import com.cowards.onlyarts.services.ArtworkDAO;
-import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -21,13 +21,13 @@ public class DeleteArtwork {
     
     private final ArtworkDAO artworkDAO = ArtworkDAO.getInstance();
     
-    @PUT
+    @DELETE
     @Path("{artworkId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("artworkId") String artworkId) {
         try {
-            boolean result = artworkDAO.delete(artworkId);
-            return Response.ok(result).build();
+            artworkDAO.delete(artworkId);
+            return Response.ok().build();
         } catch (Exception e) {
             return Response.ok(e).build();
         }

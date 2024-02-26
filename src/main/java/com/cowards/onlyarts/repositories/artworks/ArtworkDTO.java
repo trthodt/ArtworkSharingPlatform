@@ -85,11 +85,6 @@ public class ArtworkDTO implements Serializable {
     private float price;
 
     /**
-     * Quantity of available copies of the artwork.
-     */
-    private long quantity;
-
-    /**
      * Date when the artwork was released or created.
      */
     private Timestamp releasedDate;

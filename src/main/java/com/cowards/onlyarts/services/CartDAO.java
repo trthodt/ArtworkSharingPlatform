@@ -11,20 +11,21 @@ import java.sql.Connection;
  *
  * @author Admin
  */
-public class CategoriesDAO {
-
-    private static CategoriesDAO instance;
-
+public class CartDAO {
+    
     private final Connection conn = DBContext.getInstance();
-
-    private CategoriesDAO() {
+    
+    private static CartDAO instance;
+    
+    private CartDAO() {
     }
-
-    public static CategoriesDAO getInstance() {
+    
+    public static CartDAO getInstance() {
         if (instance == null) {
-            instance = new CategoriesDAO();
+            instance = new CartDAO();
         }
         return instance;
     }
-
+    
+    
 }
