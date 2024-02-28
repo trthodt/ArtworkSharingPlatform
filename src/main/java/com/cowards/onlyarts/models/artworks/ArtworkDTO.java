@@ -1,5 +1,6 @@
 package com.cowards.onlyarts.models.artworks;
 
+<<<<<<< HEAD
 import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

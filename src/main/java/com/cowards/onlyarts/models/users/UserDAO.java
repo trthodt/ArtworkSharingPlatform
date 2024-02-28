@@ -1,5 +1,6 @@
 package com.cowards.onlyarts.models.users;
 
+
 import com.cowards.onlyarts.utils.DBContext;
 import java.sql.Connection;
 import java.sql.Date;
@@ -405,7 +406,5 @@ public class UserDAO {
         }
         return check;
     }
-
-
 
 }

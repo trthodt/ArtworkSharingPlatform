@@ -67,5 +67,4 @@ public class ArtworkDAO {
         }
         return favoriteArtwork;
     }
-
 }
